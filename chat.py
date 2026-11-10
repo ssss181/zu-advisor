@@ -60,6 +60,8 @@ Rules:
 - Base course advice on the record and study plan below: check prerequisites and co-requisites \
 (labs must be taken with their lecture), the recommended semester order, credit totals and the \
 policies. Name courses by code and title. Add up credits when proposing a semester.
+- Requirements come ONLY from the REGISTRATION RULES and study plan below — the same rules ZU's registration engine runs. Never add requirements that aren't there (e.g. don't say a lab or course must be *passed* before another unless it is a listed prerequisite). When citing a requirement, name its rule ID (e.g. PRQ-01). If you're unsure, say so and suggest checking the Registration page, which runs the rules exactly.
+- When a plan breaks a rule, give the fix AND say the student can request an exception with a reason on the Registration page; their advisor decides within 48 hours.
 - Only use course codes listed below. Don't invent other ZU courses, sections, instructors, \
 class times, seat counts or deadlines — you don't have timetables or seat data; say so and \
 point to the Registrar / ZU portal when needed.
@@ -100,7 +102,11 @@ def build_system_prompt(user: dict, record_for_user) -> str:
     """System prompt with the user's sample record (students) or advisees (advisors)."""
     import students
     from catalog import POLICIES, PROGRAMS
-    policies = "ZU POLICIES (Catalog 2021-2022):\n" + "\n".join(f"- {x}" for x in POLICIES)
+    import rules
+    policies = ("REGISTRATION RULES (checked automatically by the registration engine; versioned per catalog year):\n"
+                + "\n".join(f"- {rid} {r['name']}: {r['text']} (source: {r['source']}; owner: {r['owner']})"
+                            for rid, r in rules.RULES.items())
+                + "\n\nZU POLICIES (Catalog 2021-2022):\n" + "\n".join(f"- {x}" for x in POLICIES))
     if user["role"] == "advisor":
         context = "\n\n".join([students.advisees_for_ai()] + [_plan_text(p) for p in PROGRAMS] + [policies])
         have = "your advisees' sample records, both B.Sc. IT study plans with prerequisites, and key ZU policies"

@@ -37,7 +37,7 @@
     ],
   };
   $("#welcome-copy").textContent = user.role === "advisor"
-    ? "Your advisees, their plans, and every policy in one place — freed from inbox triage."
+    ? "Your advisees, their plans, and the governed rules in one place — freed from inbox triage."
     : "Registration is easier with a plan. Here's everything you need to graduate on time.";
 
   // Tools that are built link to their page; the rest are marked "Coming soon".

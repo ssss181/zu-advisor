@@ -151,7 +151,7 @@ def seed_samples(db_path: Path, n: int = 140, force: bool = False) -> None:
             ev = rules.evaluate(rec, summ, plan)
             if ev["tier"] == "red" and not exception_note:
                 continue
-            created = now - timedelta(hours=rng.uniform(2, 96))
+            created = now - timedelta(hours=rng.uniform(2, 60))
             snap = _snapshot(rec, summ)
             if ev["tier"] == "green":
                 kind, status, decided_by = "routine", "approved", "Rules engine"

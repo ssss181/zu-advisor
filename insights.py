@@ -57,7 +57,7 @@ def policies_payload() -> dict:
         "policies": POLICIES,
         "calendar": calendar(),
         "service": SERVICE_STANDARDS,
-        "note": "Rules are the same ones the registration engine runs. Dates are a sample calendar for the prototype — "
+        "note": "Rules are versioned per catalog year (prerequisites: Catalog 2021-22; study plans: 2025) and are the same ones the registration engine runs. Dates are a sample calendar for the prototype — "
                 "confirm with the Registrar.",
     }
 
@@ -119,7 +119,7 @@ def risk_profile(record: dict, summary: dict) -> dict:
     cgpa = summary["cgpa"]
     if cgpa is not None and cgpa < 2.0:
         score += 40; reasons.append(f"CGPA {cgpa} — on academic probation")
-    elif cgpa is not None and cgpa < 2.3:
+    elif cgpa is not None and cgpa < 2.26:  # ZU Academic Advising Policy
         score += 20; reasons.append(f"CGPA {cgpa} — close to probation")
     failed = _failed_outstanding(record)
     if failed:

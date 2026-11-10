@@ -36,11 +36,15 @@
     $("#kpi-note").textContent = `Compared with a baseline where every registration waits for manual approval (assumed ${k.baseline_hours} h average — replace with ZU's real figure). Sample cohort: simulated students.`;
 
     $("#pending-count").textContent = `${state.pending.length} case${state.pending.length === 1 ? "" : "s"}`;
+    const overdue = (r) => r.status === "pending" && Date.now() - new Date(r.created_at).getTime() > 48 * 3600e3;
+    const nOver = state.pending.filter(overdue).length;
+    if (nOver) $("#pending-count").innerHTML += ` · <span class="tag risk-high">${nOver} overdue</span>`;
     const caseBtn = (r) => {
       const issues = r.checks.filter((c) => c.level !== "ok");
       return `<button class="case ${current === r.id ? "sel" : ""}" data-id="${r.id}" type="button">
         <div class="case-top"><span class="case-name">${esc(r.student.name)}</span>${r.status === "pending" ? tierTag(r) : `<span class="tag ${r.status === "approved" ? "ok" : "no"}">${esc(r.status)}</span>`}</div>
         <div class="case-meta">${esc(r.student.program_short)} · sem ${r.student.semester} · CGPA ${r.student.cgpa ?? "–"} · ${r.credits} cr · ${r.status === "pending" ? "waiting " + ago(r.created_at) : "decided by " + esc(r.decided_by)}${r.is_sample ? "" : " · <strong>live</strong>"}</div>
+        ${overdue(r) ? '<div class="overdue-row"><span class="tag risk-high">⚠ Overdue · past 48 h</span><span class="source-note">Escalated to Program Chair</span></div>' : ""}
         <div class="case-reason">${esc(issues[0]?.message || "")}${issues.length > 1 ? ` <span class="tag">+${issues.length - 1}</span>` : ""}</div>
       </button>`;
     };
