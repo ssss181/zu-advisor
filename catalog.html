@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Courses — ZU Advisor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 8H7"/><path d="M17 12H7"/></symbol>
+</defs></svg>
+
+<div class="app-top">
+  <header class="container app-header">
+    <a href="/dashboard" class="brand">
+      <span class="brand-mark"><svg class="icon"><use href="#i-cap"/></svg></span>
+      <span class="brand-text"><span class="brand-name">ZU Advisor</span><span class="brand-sub">AI Course Planner</span></span>
+    </a>
+    <nav class="app-nav">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/register" id="nav-reg">Registration</a>
+      <a href="/alerts" id="nav-alerts">Alerts</a>
+      <a href="/record" id="nav-record">My Record</a>
+      <a href="/catalog" class="active">Courses</a>
+      <a href="/policies">Policies</a>
+      <a href="/chat">AI Advisor</a>
+    </nav>
+  </header>
+  <section class="container page-hero">
+    <div class="sample-badge">Real ZU courses · 2025 study plans</div>
+    <h1>Course Catalogue</h1>
+    <p>B.Sc. in Information Technology — College of Technological Innovation, Zayed University</p>
+  </section>
+</div>
+
+<main class="container page-body">
+  <section class="filters">
+    <input id="q" type="search" placeholder="Search by code or title, e.g. SEC432 or database" aria-label="Search courses">
+    <select id="program" aria-label="Concentration">
+      <option value="">Both concentrations</option>
+      <option value="SECNET">Security &amp; Network Technologies</option>
+      <option value="WAM">Web &amp; Mobile Application Development</option>
+    </select>
+    <select id="area" aria-label="Area">
+      <option value="">All areas</option>
+    </select>
+    <span class="count" id="count"></span>
+  </section>
+  <section class="course-grid" id="grid"><div class="loading">Loading courses…</div></section>
+  <p class="source-note" id="source"></p>
+</main>
+
+<script src="/catalog.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Policies — ZU Advisor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 8H7"/><path d="M17 12H7"/></symbol>
+</defs></svg>
+
+<div class="app-top">
+  <header class="container app-header">
+    <a href="/dashboard" class="brand">
+      <span class="brand-mark"><svg class="icon"><use href="#i-cap"/></svg></span>
+      <span class="brand-text"><span class="brand-name">ZU Advisor</span><span class="brand-sub">AI Course Planner</span></span>
+    </a>
+    <nav class="app-nav">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/register" id="nav-reg">Registration</a>
+      <a href="/alerts" id="nav-alerts">Alerts</a>
+      <a href="/record" id="nav-record">My Record</a>
+      <a href="/catalog">Courses</a>
+      <a href="/policies" class="active">Policies</a>
+      <a href="/chat">AI Advisor</a>
+    </nav>
+  </header>
+  <section class="container page-hero">
+    <div class="sample-badge">One governed rule set</div>
+    <h1 id="hero-title">Policies &amp; key dates</h1>
+    <p id="hero-sub">The same rules the registration engine runs — each with an ID, a source and an accountable owner.</p>
+  </section>
+</div>
+
+<main class="container page-body" id="body">
+  <section class="filters">
+    <input id="q" type="search" placeholder="Search policies, e.g. probation, load, prerequisite" aria-label="Search policies">
+    <span class="count" id="count"></span>
+  </section>
+  <div class="two-col">
+    <section class="panel">
+      <div class="panel-head"><h2>Registration rules</h2><p>Enforced automatically</p></div>
+      <div id="rules"><div class="loading">Loading…</div></div>
+      <div class="panel-head" style="margin-top:1.5rem"><h2>Academic policies</h2><p>ZU Catalog</p></div>
+      <div id="policies"></div>
+    </section>
+    <div style="display:grid;gap:1.5rem">
+      <section class="panel">
+        <div class="panel-head"><h2>Key dates</h2><p id="term"></p></div>
+        <div id="dates"></div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><h2>Service standards</h2><p>What students can expect</p></div>
+        <div id="service"></div>
+      </section>
+      <section class="panel">
+        <h2 style="font-size:1.125rem">Can't find it?</h2>
+        <p class="source-note" style="font-size:.875rem;margin:.375rem 0 .875rem">Ask the AI advisor — it answers from these same policies.</p>
+        <a class="btn btn-gold btn-sm" href="/chat?q=What%20is%20the%20maximum%20credit%20load%20and%20what%20happens%20if%20I%20am%20on%20probation%3F"><svg class="icon icon-sm"><use href="#i-chat"/></svg>Ask about a policy</a>
+      </section>
+    </div>
+  </div>
+  <p class="source-note" id="note"></p>
+</main>
+
+<script src="/policies.js"></script>
+</body>
+</html>

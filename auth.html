@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in — ZU Advisor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/auth.css">
+</head>
+<body class="auth-body">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  </defs>
+</svg>
+
+<div class="auth-layout">
+  <!-- Left: campus photo panel -->
+  <aside class="auth-visual">
+    <img src="/assets/zu-dubai-campus.jpg" alt="" class="auth-visual-img">
+    <div class="auth-visual-shade"></div>
+    <div class="auth-visual-content">
+      <a href="/" class="brand">
+        <span class="brand-mark"><svg class="icon"><use href="#i-cap"/></svg></span>
+        <span class="brand-text"><span class="brand-name">ZU Advisor</span><span class="brand-sub">AI Course Planner</span></span>
+      </a>
+      <div>
+        <h2 class="auth-quote">Register on time.<br><span class="text-gold">Graduate on time.</span></h2>
+        <ul class="auth-points">
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg>Conflict-free semester plans in seconds</li>
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg>Every academic policy, instantly searchable</li>
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg>Know exactly what's left until graduation</li>
+        </ul>
+      </div>
+      <p class="auth-credit">Zayed University · Dubai campus</p>
+    </div>
+  </aside>
+
+  <!-- Right: form -->
+  <main class="auth-main">
+    <a href="/" class="back-link"><svg class="icon icon-sm"><use href="#i-back"/></svg>Back to home</a>
+
+    <div class="auth-card">
+      <a href="/" class="brand brand-dark auth-mobile-brand">
+        <span class="brand-mark"><svg class="icon"><use href="#i-cap"/></svg></span>
+        <span class="brand-text"><span class="brand-name">ZU Advisor</span><span class="brand-sub">AI Course Planner</span></span>
+      </a>
+
+      <h1 id="auth-title" class="auth-title">Welcome back</h1>
+      <p id="auth-subtitle" class="auth-subtitle">Sign in to continue planning your semester.</p>
+
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" class="tab" id="tab-signin" aria-selected="true" aria-controls="form-signin">Sign in</button>
+        <button type="button" role="tab" class="tab" id="tab-signup" aria-selected="false" aria-controls="form-signup">Create account</button>
+      </div>
+
+      <div id="form-error" class="form-error" role="alert" hidden></div>
+
+      <!-- SIGN IN -->
+      <form id="form-signin" class="auth-form" role="tabpanel" aria-labelledby="tab-signin" novalidate>
+        <div class="field">
+          <label for="si-email">Email</label>
+          <input id="si-email" name="email" type="email" autocomplete="email" placeholder="you@zu.ac.ae" required>
+        </div>
+        <div class="field">
+          <label for="si-password">Password</label>
+          <div class="pw-wrap">
+            <input id="si-password" name="password" type="password" autocomplete="current-password" placeholder="Your password" required>
+            <button type="button" class="pw-toggle" aria-label="Show password"><svg class="icon icon-sm"><use href="#i-eye"/></svg></button>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" name="remember" checked> Keep me signed in</label>
+        <button type="submit" class="btn btn-gold btn-block">Sign in</button>
+      </form>
+
+      <!-- SIGN UP -->
+      <form id="form-signup" class="auth-form" role="tabpanel" aria-labelledby="tab-signup" novalidate hidden>
+        <fieldset class="role-pick">
+          <legend>I am a</legend>
+          <label class="role-opt"><input type="radio" name="role" value="student" checked><span><svg class="icon icon-sm"><use href="#i-cap"/></svg>Student</span></label>
+          <label class="role-opt"><input type="radio" name="role" value="advisor"><span><svg class="icon icon-sm"><use href="#i-users"/></svg>Advisor</span></label>
+        </fieldset>
+        <div class="field-row" id="student-fields">
+          <div class="field">
+            <label for="su-program">Concentration (B.Sc. IT)</label>
+            <select id="su-program" name="program">
+              <option value="SECNET">Security &amp; Network Technologies</option>
+              <option value="WAM">Web &amp; Mobile Application Development</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="su-semester">Current semester</label>
+            <select id="su-semester" name="semester">
+              <option value="1">1 (Year 1)</option><option value="2">2 (Year 1)</option>
+              <option value="3" selected>3 (Year 2)</option><option value="4">4 (Year 2)</option>
+              <option value="5">5 (Year 3)</option><option value="6">6 (Year 3)</option>
+              <option value="7">7 (Year 4)</option><option value="8">8 (Year 4)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="su-name">Full name</label>
+          <input id="su-name" name="name" type="text" autocomplete="name" placeholder="Your full name" required>
+        </div>
+        <div class="field">
+          <label for="su-email">Email</label>
+          <input id="su-email" name="email" type="email" autocomplete="email" placeholder="you@zu.ac.ae" required>
+        </div>
+        <div class="field">
+          <label for="su-password">Password</label>
+          <div class="pw-wrap">
+            <input id="su-password" name="password" type="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" required>
+            <button type="button" class="pw-toggle" aria-label="Show password"><svg class="icon icon-sm"><use href="#i-eye"/></svg></button>
+          </div>
+          <div class="pw-meter" aria-hidden="true"><span></span></div>
+        </div>
+        <button type="submit" class="btn btn-gold btn-block">Create account</button>
+      </form>
+
+      <div class="divider"><span>or try it first</span></div>
+      <div class="demo-row">
+        <button type="button" class="btn btn-outline btn-block" data-demo="student"><svg class="icon icon-xs"><use href="#i-cap"/></svg>Demo as Student</button>
+        <button type="button" class="btn btn-outline btn-block" data-demo="advisor"><svg class="icon icon-xs"><use href="#i-users"/></svg>Demo as Advisor</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="/auth.js"></script>
+</body>
+</html>

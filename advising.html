@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Approvals — ZU Advisor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></symbol>
+</defs></svg>
+
+<div class="app-top">
+  <header class="container app-header">
+    <a href="/dashboard" class="brand">
+      <span class="brand-mark"><svg class="icon"><use href="#i-cap"/></svg></span>
+      <span class="brand-text"><span class="brand-name">ZU Advisor</span><span class="brand-sub">AI Course Planner</span></span>
+    </a>
+    <nav class="app-nav">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/register" class="active">Approvals</a>
+      <a href="/alerts">Early Warning</a>
+      <a href="/record">My Advisees</a>
+      <a href="/catalog">Courses</a>
+      <a href="/policies">Policies</a>
+      <a href="/chat">AI Advisor</a>
+    </nav>
+  </header>
+  <section class="container page-hero">
+    <div class="sample-badge">Risk-tiered approvals · sample cohort</div>
+    <h1 id="title">Registration approvals</h1>
+    <p>Routine plans are approved automatically by the rules engine. You only see the cases that need academic judgment.</p>
+  </section>
+</div>
+
+<main class="container page-body">
+  <section class="kpis" id="kpis"></section>
+  <p class="kpi-note" id="kpi-note"></p>
+  <div class="adv-grid">
+    <section class="panel">
+      <div class="panel-head"><h2>Needs your decision</h2><p id="pending-count"></p></div>
+      <div id="queue"><div class="loading">Loading…</div></div>
+      <div class="panel-head" style="margin-top:1.5rem"><h2 style="font-size:1.125rem">Recently decided</h2></div>
+      <div id="decided"></div>
+    </section>
+    <section class="panel case-panel" id="case"><p class="empty">Select a case to review it.</p></section>
+  </div>
+  <section class="panel">
+    <div class="panel-head"><h2>Why cases need judgment</h2><p>Rules most often triggering review — evidence for improving rules and capacity</p></div>
+    <div id="reasons"></div>
+  </section>
+  <p class="source-note">Queue pre-filled with simulated students for the prototype (no real data). <a href="#" id="reset">Reset demo queue</a></p>
+</main>
+
+<script src="/advising.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard — ZU Advisor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .dash-top { background: var(--gradient-ink); color: var(--primary-fg); }
+    .dash-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid hsl(40 33% 97% / .08); }
+    .user-chip { display: flex; align-items: center; gap: .75rem; }
+    .avatar { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--gradient-gold); color: var(--accent-fg); font-weight: 700; font-size: .875rem; }
+    .user-meta { display: none; line-height: 1.2; text-align: right; }
+    .user-meta strong { display: block; font-size: .875rem; font-weight: 600; }
+    .user-meta span { font-size: .75rem; color: hsl(40 33% 97% / .6); }
+    @media (min-width: 640px) { .user-meta { display: block; } }
+    .welcome { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    .welcome h1 { font-family: var(--font-display); font-weight: 700; font-size: 2.5rem; line-height: 1.1; }
+    @media (min-width: 640px) { .welcome h1 { font-size: 3rem; } }
+    .welcome p { margin-top: 1rem; max-width: 36rem; color: hsl(40 33% 97% / .75); font-size: 1.0625rem; }
+    .role-badge { display: inline-flex; align-items: center; gap: .375rem; margin-bottom: 1rem; padding: .25rem .75rem; border: 1px solid hsl(42 55% 48% / .35); border-radius: 999px; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+    .demo-note { margin-top: 1.5rem; display: inline-flex; padding: .625rem 1rem; border-radius: calc(var(--radius) - 2px); background: hsl(42 55% 48% / .12); border: 1px solid hsl(42 55% 48% / .3); font-size: .875rem; color: hsl(40 33% 97% / .85); }
+    .demo-note a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; margin-left: .25rem; }
+    .tools { padding-top: 3.5rem; padding-bottom: 5rem; }
+    .tools h2 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; color: var(--primary); margin-bottom: 1.5rem; }
+    .ask-btn { margin-top: 1.75rem; }
+    .program-line { margin-top: .5rem !important; font-size: .875rem !important; color: var(--accent) !important; }
+    .mini-stats { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+    .mini { padding: .625rem 1rem; border: 1px solid hsl(40 33% 97% / .12); border-radius: calc(var(--radius) - 2px); background: hsl(40 33% 97% / .05); }
+    .mini span { display: block; font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; color: hsl(40 33% 97% / .55); }
+    .mini strong { font-family: var(--font-display); font-size: 1.25rem; }
+    .demo-note { display: flex; width: fit-content; }
+    .card-live { display: block; border-color: hsl(42 55% 48% / .45); }
+    .card-live .soon { color: var(--accent); }
+    .soon { display: inline-block; margin-top: .875rem; font-size: .6875rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-fg); }
+  </style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 8H7"/><path d="M17 12H7"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></symbol>
+  </defs>
+</svg>
+
+<div class="dash-top">
+  <header class="container dash-header">
+    <a href="/" class="brand">
+      <span class="brand-mark"><svg class="icon"><use href="#i-cap"/></svg></span>
+      <span class="brand-text"><span class="brand-name">ZU Advisor</span><span class="brand-sub">AI Course Planner</span></span>
+    </a>
+    <div class="user-chip">
+      <div class="user-meta"><strong id="u-name">…</strong><span id="u-email"></span></div>
+      <div class="avatar" id="u-avatar" aria-hidden="true"></div>
+      <button class="btn btn-ghost btn-sm" id="logout" type="button"><svg class="icon icon-sm"><use href="#i-logout"/></svg>Sign out</button>
+    </div>
+  </header>
+
+  <section class="container welcome">
+    <div class="role-badge" id="u-role"></div>
+    <h1>Welcome, <span class="text-gold" id="u-first">…</span>.</h1>
+    <p id="welcome-copy"></p>
+    <p class="program-line" id="u-program"></p>
+    <div class="mini-stats" id="mini-stats"></div>
+    <a href="/chat" class="btn btn-gold btn-lg ask-btn"><svg class="icon icon-sm"><use href="#i-chat"/></svg>Ask your AI advisor</a>
+    <div class="demo-note" id="demo-note" hidden>You're exploring a demo account — nothing you do here is saved. <a href="/auth?mode=signup">Create your own account</a></div>
+  </section>
+</div>
+
+<main class="container tools">
+  <h2 id="tools-title">Your tools</h2>
+  <div class="feature-grid" id="tools"></div>
+</main>
+
+<script src="/dashboard.js"></script>
+</body>
+</html>

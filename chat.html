@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Advisor — ZU Advisor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/chat.css">
+</head>
+<body class="chat-body">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M4 6h16"/><path d="M4 18h16"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></symbol>
+  </defs>
+</svg>
+
+<div class="chat-app">
+  <!-- Sidebar: conversations -->
+  <aside class="chat-side" id="side">
+    <a href="/dashboard" class="brand">
+      <span class="brand-mark"><svg class="icon"><use href="#i-cap"/></svg></span>
+      <span class="brand-text"><span class="brand-name">ZU Advisor</span><span class="brand-sub">AI Course Planner</span></span>
+    </a>
+    <button class="btn btn-gold btn-block new-chat" id="new-chat" type="button"><svg class="icon icon-sm"><use href="#i-plus"/></svg>New chat</button>
+    <p class="side-label">Recent</p>
+    <nav class="conv-list" id="conv-list" aria-label="Conversations"></nav>
+    <a href="/dashboard" class="side-back"><svg class="icon icon-sm"><use href="#i-back"/></svg>Back to dashboard</a>
+  </aside>
+  <div class="side-scrim" id="scrim" hidden></div>
+
+  <!-- Main -->
+  <main class="chat-main">
+    <header class="chat-header">
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Show conversations"><svg class="icon"><use href="#i-menu"/></svg></button>
+      <div class="chat-header-title">
+        <h1 id="chat-title">AI Advisor</h1>
+        <span class="status"><span class="dot"></span><span id="status-text">Online · usually replies in seconds</span></span>
+      </div>
+    </header>
+
+    <div class="chat-scroll" id="scroll">
+      <div class="chat-inner">
+        <!-- Empty state -->
+        <section class="welcome-chat" id="welcome">
+          <div class="welcome-icon"><svg class="icon icon-lg"><use href="#i-sparkles"/></svg></div>
+          <h2>How can I help, <span class="text-gold" id="first-name">there</span>?</h2>
+          <p>Ask about courses, prerequisites, building your semester, or what's left until graduation.</p>
+          <div class="suggestions" id="suggestions"></div>
+          <div class="setup-note" id="setup-note" hidden>
+            <strong>The AI isn't connected yet.</strong> Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>, add <code>GEMINI_API_KEY=your-key</code> to the <code>.env</code> file in the project folder, then restart the site.
+          </div>
+        </section>
+        <div class="messages" id="messages" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <form class="composer" id="composer">
+      <div class="composer-box">
+        <textarea id="input" rows="1" placeholder="Ask your advisor anything…" aria-label="Message" maxlength="4000"></textarea>
+        <button class="send-btn" id="send" type="submit" aria-label="Send" disabled><svg class="icon icon-sm"><use href="#i-send"/></svg></button>
+      </div>
+      <p class="composer-note">AI advice can be wrong. Confirm course codes, deadlines and policies with the Registrar or your faculty advisor.</p>
+    </form>
+  </main>
+</div>
+
+<script src="/chat.js"></script>
+</body>
+</html>

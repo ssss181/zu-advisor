@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Early Warning — ZU Advisor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 8H7"/><path d="M17 12H7"/></symbol>
+</defs></svg>
+
+<div class="app-top">
+  <header class="container app-header">
+    <a href="/dashboard" class="brand">
+      <span class="brand-mark"><svg class="icon"><use href="#i-cap"/></svg></span>
+      <span class="brand-text"><span class="brand-name">ZU Advisor</span><span class="brand-sub">AI Course Planner</span></span>
+    </a>
+    <nav class="app-nav">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/register" id="nav-reg">Approvals</a>
+      <a href="/alerts" id="nav-alerts" class="active">Early Warning</a>
+      <a href="/record" id="nav-record">My Advisees</a>
+      <a href="/catalog">Courses</a>
+      <a href="/policies">Policies</a>
+      <a href="/chat">AI Advisor</a>
+    </nav>
+  </header>
+  <section class="container page-hero">
+    <div class="sample-badge">Early warning · simulated cohort</div>
+    <h1 id="hero-title">Early warning</h1>
+    <p id="hero-sub">Students who need support — found before registration, not after a failed term.</p>
+  </section>
+</div>
+
+<main class="container page-body" id="body">
+  <section class="kpis" id="kpis"></section>
+  <section class="panel">
+    <div class="panel-head"><h2>Your advisees</h2><p>Explainable risk score · highest first</p></div>
+    <div id="advisees"><div class="loading">Loading…</div></div>
+  </section>
+  <div class="two-col">
+    <section class="panel">
+      <div class="panel-head"><h2>Programme-wide watch list</h2><p id="cohort-sub"></p></div>
+      <div id="cohort"></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h2>Seat demand vs capacity</h2><p id="seat-sub"></p></div>
+      <div id="seats"></div>
+      <p class="source-note" style="margin-top:.75rem">Demand = registration requests for the next term (simulated cohort scaled ×4). Capacity = sample sections of 25 — replace with the real timetable.</p>
+    </section>
+  </div>
+  <section class="panel">
+    <div class="panel-head"><h2>How the risk score works</h2><p>Transparent — every point has a reason</p></div>
+    <div class="table-wrap"><table class="data"><thead><tr><th>Signal</th><th>Points</th></tr></thead><tbody>
+      <tr><td>CGPA below 2.00 (probation) / below 2.30</td><td>40 / 20</td></tr>
+      <tr><td>Failed course not yet repeated (each)</td><td>15 (max 30)</td></tr>
+      <tr><td>Repeating a course this term</td><td>10</td></tr>
+      <tr><td>Credits behind the study plan: 9+ / 4+</td><td>20 / 10</td></tr>
+      <tr><td>Term GPA dropped by 0.5 or more</td><td>15</td></tr>
+    </tbody></table></div>
+    <p class="source-note" style="margin-top:.75rem">High ≥ 50 · Medium ≥ 25. Weights are a starting point to calibrate with ZU's historical data.</p>
+  </section>
+  <p class="source-note">All students are fictional sample data for the prototype.</p>
+</main>
+
+<script src="/warning.js"></script>
+</body>
+</html>

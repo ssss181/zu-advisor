@@ -1,0 +1,15 @@
+# Render blueprint: one free web service. Set GEMINI_API_KEY in the Render dashboard.
+services:
+  - type: web
+    name: zu-advisor
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    # One worker (in-memory rate limits) with threads for streaming chat replies.
+    startCommand: gunicorn server:app --workers 1 --threads 8 --timeout 120 --bind 0.0.0.0:$PORT
+    healthCheckPath: /
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
